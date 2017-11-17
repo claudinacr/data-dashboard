@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Data Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
@@ -10,54 +11,84 @@
       <img class="logo" src="assets/images/logo-laboratoria.svg" alt="">
     </header>
     <section id="uno">
-      <h2>Overview</h2>
-      <h2>Students</h2>
-      <h2>Teachers</h2>
-    </section>
-    <section id="dos">
+    <select class="sedes">
+      <option value="santiago">Santiago de Chile</option>
+      <hr>
+      <option value="santiago" class="min"> 2017 - I</option>
+      <option value="santiago" class="min"> 2017 - II</option>
+      <option value="lima">Lima</option>
+      <hr>
+      <option value="lima" class="min">2017 - I</option>
+      <option value="lima" class="min">2017- II</option>
+      <option value="arequipa">Arequipa</option>
+      <hr>
+      <option value="requipa" class="min">2017- I</option>
+      <option value="arequipa" class="min">2017- II</option>
+      <option value="mexico">Ciudad de Mexico</option>
+      <hr>
+      <option value="mexico"class="min">2017- I</option>
+      <option value="mexico" class="min"> 2017- II</option>
+    </select>
 
-      <div class="enrollment">
-        <h2>Enrollment</h2>
-        <img src="assets/images/bar-graph.png" alt="">
+    <div class="seleccionar">
+      <ul>
+        <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabOverview" class="tab">Overview</button></li>
+        <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabStudent" class="tab">Students</button></li>
+        <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabTeacher" class="tab">Teachers</button></li>
+      </ul>
+    </div>
+    <div class="">
+      <article id="overview">
+        <section id="dos">
+          <div class="enrollment">
+            <h2>Enrollment</h2>
+            <img src="assets/images/bar-graph.png" alt="">
+
+          </div>
+          <div class="achivement">
+            <h2>Achivement</h2>
+            <img src="assets/images/graph.png" alt="">
+
+          </div>
+          <div class="nps">
+            <h2>Net Promoter Score</h2>
+            <img src="assets/images/graph.png" alt="">
+
+          </div>
+        </section>
+
+        <section id="tres">
+          <h2>Tech Skills</h2>
+          <img src="assets/images/rectangular-graphic.png" alt="">
+        </section>
+        <section id="cuatro">
+          <h2>Life Skills</h2>
+          <img src="assets/images/rectangular-graphic.png" alt="">
+        </section>
+
+        <section id="cinco">
+          <div class="student">
+            <h2>Student Satisfaction</h2>
+            <img src="assets/images/graph.png" alt="">
+
+          </div>
+          <div class="teacher">
+            <h2>Teacher Ratings</h2>
+            <img src="assets/images/graph.png" alt="">
+
+          </div>
+          <div class="jedi">
+            <h2>Jedi Master Rating</h2>
+            <img src="assets/images/graph.png" alt="">
+
+        </section>
+        </article>
+        <article id="student">Student</article>
+        <article id="teacher">Teacher</article>
 
       </div>
-      <div class="achivement">
-        <h2>Achivement</h2>
-        <img src="assets/images/graph.png" alt="">
-
-      </div>
-      <div class="nps">
-        <h2>Net Promoter Score</h2>
-        <img src="assets/images/graph.png" alt="">
-
-      </div>
     </section>
 
-    <section id="tres">
-      <h2>Tech Skills</h2>
-      <img src="assets/images/rectangular-graphic.png" alt="">
-    </section>
-    <section id="cuatro">
-      <h2>Life Skills</h2>
-      <img src="assets/images/rectangular-graphic.png" alt="">
-    </section>
-
-    <section id="cinco">
-      <div class="student">
-        <h2>Student Satisfaction</h2>
-        <img src="assets/images/graph.png" alt="">
-
-      </div>
-      <div class="teacher">
-        <h2>Teacher Ratings</h2>
-        <img src="assets/images/graph.png" alt="">
-
-      </div>
-      <div class="jedi">
-        <h2>Jedi Master Rating</h2>
-        <img src="assets/images/graph.png" alt="">
-
-    </section>
 
     <footer>
     </footer>
