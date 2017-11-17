@@ -40,7 +40,7 @@ header {
     width: 356px;
     margin: 30px;
     background-color: white;
-    border: 1px blue solid;
+    /* border: 1px blue solid; */
 }
 
 #StudCurrEnr,
@@ -71,8 +71,11 @@ header {
 #cuatro {
     background-color: #F7F7F7;
     display: block;
-    border: 1px blue solid;
+    /* border: 1px blue solid; */
     margin-bottom: 55px;
+    padding: 50px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #seccioncuatro {
@@ -93,10 +96,14 @@ img[src="assets/images/circle-graphic.png"] {
     width: 30%;
 }
 
-#cinco {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+#cinco1 {
+    background-color: #F7F7F7;
+    display: block;
+    /* border: 1px blue solid; */
+    margin-bottom: 55px;
+    padding: 50px;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .student,
