@@ -1,22 +1,35 @@
-/*
- * Funcionalidad de tu producto
- */
+google.charts.load("current", { packages: ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ["Element", "Estudiantes Activas", { role: "style" }],
+        ["S1", 59, "#b87333"],
+        ["S2", 50, "silver"],
+        ["S3", 40, "gold"],
+        ["S4", 30, "color: #e5e4e2"]
+    ]);
 
-// Puedes hacer uso de la base de datos a través de la variable `data`
-console.log(data);
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+        {
+            calc: "stringify",
+            sourceColumn: 1,
+            type: "string",
+            role: "annotation"
+        },
+        2]);
 
-/* Total de estudiantes por Sede y Generación */
-
-/* Total de estudiantes por Sede */
-
-/* Arequipa */
-var totalAQP = Object.keys(data.AQP);
-/* Cantidad de generaciones en Arequipa */
-
-/* Cantidad de estudiantes por Generacion en Arequipa*/
+    var options = {
+        width: 350,
+        height: 200,
+        bar: { groupWidth: "70%" },
+        legend: { position: "none" },
+        backgroundColor: 'none',
 
 
 
-/* Cantidad de estudiantes por Generacion en Arequipa */
-
+    };
+    var chart = new google.visualization.ColumnChart(document.querySelector(".graficaEnroll"));
+    chart.draw(view, options);
+}
 

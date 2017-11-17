@@ -1,52 +1,109 @@
 /*
  * Estilos de tu proyecto
  */
-body{
-  margin: 0 auto;
+
+* {
+    margin: 0;
+    padding: 0;
 }
 
-header{
-  text-align: center;
+body {
+    margin: 0 auto;
 }
 
-.logo{
-  width: 180px;
+header {
+    text-align: center;
 }
 
-#uno{
-  background-color: #E0E0E0;
-  display: flex;
-  flex-direction: row;
-  padding: 15px;
+.logo {
+    width: 180px;
 }
 
-#dos{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.enrollment, .achivement , .nps{
-  background-color: #F7F7F7;
-  width: 350px;
-  margin: 30px;
-  padding-left: 15px;
+#uno {
+    background-color: #E0E0E0;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    padding: 45px;
 }
 
-#tres{
-  background-color: #F7F7F7;
+#dos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #F7F7F7;
 }
 
-#cuatro{
-  background-color: #F7F7F7;
+#enrollment,
+.achivement,
+.nps {
+    width: 356px;
+    margin: 30px;
+    background-color: white;
+    border: 1px blue solid;
 }
-#cinco{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+
+#StudCurrEnr,
+#dropout {
+    width: 150px;
+    height: 63px;
+    background-color: #F7F7F7;
+    border: 1px black solid;
+    display: inline-block;
 }
-.student, .teacher , .jedi{
-  background-color: #F7F7F7;
-  width: 350px;
-  margin: 30px;
-  padding-left: 15px;
+
+#graficaEnroll {
+    text-align: center;
+}
+
+#enrollment {
+    float: left;
+}
+
+#contenedorStudDrop {
+    text-align: center;
+}
+
+#tres {
+    background-color: #F7F7F7;
+}
+
+#cuatro {
+    background-color: #F7F7F7;
+    display: block;
+    border: 1px blue solid;
+    margin-bottom: 55px;
+}
+
+#seccioncuatro {
+    background-color: white;
+    display: inline-block;
+    width: 88.5%;
+    margin-left: 4.5%;
+    padding-left: 2em;
+    margin-top: 55px;
+}
+
+.graficatech img {
+    width: 65%;
+    float: left;
+}
+
+img[src="assets/images/circle-graphic.png"] {
+    width: 30%;
+}
+
+#cinco {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.student,
+.teacher,
+.jedi {
+    background-color: #F7F7F7;
+    width: 350px;
+    margin: 30px;
+    padding-left: 15px;
 }

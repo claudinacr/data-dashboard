@@ -1,70 +1,135 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body>
-    <header>
-      <img class="logo" src="assets/images/logo-laboratoria.svg" alt="">
-    </header>
-    <section id="uno">
-      <h2>Overview</h2>
-      <h2>Students</h2>
-      <h2>Teachers</h2>
-    </section>
-    <section id="dos">
 
-      <div class="enrollment">
-        <h2>Enrollment</h2>
-        <img src="assets/images/bar-graph.png" alt="">
+<head>
+  <meta charset="utf-8">
+  <title>Data Dashboard</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <header>
+    <img class="logo" src="assets/images/logo-laboratoria.svg" alt="">
+  </header>
+  <section id="uno">
+    <h2>Overview</h2>
+    <h2>Students</h2>
+    <h2>Teachers</h2>
+  </section>
+
+
+  <section id="dos">
+
+    <div id="enrollment">
+      <h2>ENROLLMENT</h2>
+      <div id="contenedorStudDrop">
+        <div id="StudCurrEnr">
+          <strong>120</strong>
+
+        </div>
+        <div id="dropout">
+          <strong>20%</strong>
+
+        </div>
+      </div>
+
+      <div class="graficaEnroll">
 
       </div>
-      <div class="achivement">
-        <h2>Achivement</h2>
-        <img src="assets/images/graph.png" alt="">
+    </div>
+
+
+
+    <div class="achivement">
+      <h2>ACHIVEMENT</h2>
+      <div id="contenedorStudDrop">
+        <div id="StudCurrEnr">
+          <strong>120</strong>
+
+        </div>
+        <div id="dropout">
+          <strong>20%</strong>
+
+        </div>
+      </div>
+
+      <div class="graficaachiv">
 
       </div>
-      <div class="nps">
-        <h2>Net Promoter Score</h2>
-        <img src="assets/images/graph.png" alt="">
+    </div>
+
+    <div class="nps">
+      <h2>NET PROMOTER SCORE</h2>
+    </div>
+  </section>
+
+
+
+  <section id="cuatro">
+    <div id="seccioncuatro">
+      <h2>TECH SKILLS</h2>
+      <div id="StudCurrEnr">
+        <strong>120</strong>
 
       </div>
-    </section>
-
-    <section id="tres">
-      <h2>Tech Skills</h2>
-      <img src="assets/images/rectangular-graphic.png" alt="">
-    </section>
-    <section id="cuatro">
-      <h2>Life Skills</h2>
-      <img src="assets/images/rectangular-graphic.png" alt="">
-    </section>
-
-    <section id="cinco">
-      <div class="student">
-        <h2>Student Satisfaction</h2>
-        <img src="assets/images/graph.png" alt="">
+      <div id="dropout">
+        <strong>20%</strong>
 
       </div>
-      <div class="teacher">
-        <h2>Teacher Ratings</h2>
-        <img src="assets/images/graph.png" alt="">
 
+      <div class="graficatech">
+        <img src="assets/images/rectangular-graphic.png" alt="">
+        <img src="assets/images/circle-graphic.png" alt="">
       </div>
-      <div class="jedi">
-        <h2>Jedi Master Rating</h2>
-        <img src="assets/images/graph.png" alt="">
 
-    </section>
 
-    <footer>
-    </footer>
 
-		<!-- Base de datos -->
-		<script src="./js/data.js"></script>
-		<!-- Aquí va tus archivos JS -->
-    <script src="./js/app.js"></script>
-  </body>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section id="cinco">
+    <div class="student">
+      <h2>Student Satisfaction</h2>
+      <img src="assets/images/graph.png" alt="">
+
+    </div>
+    <div class="teacher">
+      <h2>Teacher Ratings</h2>
+      <img src="assets/images/graph.png" alt="">
+
+    </div>
+    <div class="jedi">
+      <h2>Jedi Master Rating</h2>
+      <img src="assets/images/graph.png" alt="">
+
+  </section>
+  <div id='chart_div'></div>
+  <footer>
+  </footer>
+
+
+
+
+
+
+
+  <!-- Base de datos -->
+  <script src=" ./js/data.js "></script>
+  <!-- Aquí va tus archivos JS -->
+  <script src="./js/app.js "></script>
+</body>
+
 </html>
