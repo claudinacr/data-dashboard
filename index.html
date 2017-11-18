@@ -3,99 +3,176 @@
   <head>
     <meta charset="utf-8">
     <title>Data Dashboard</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="assets/images/favicon.fcc1c1ce0c1f9a5fc40a597379ebe6ff.png">
     <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <header>
       <img class="logo" src="assets/images/logo-laboratoria.svg" alt="">
+      <i class="fa fa-bars" aria-hidden="true"></i>
     </header>
-    <section id="uno">
-    <select class="sedes">
-      <option value="santiago">Santiago de Chile</option>
-      <hr>
-      <option value="santiago" class="min"> 2017 - I</option>
-      <option value="santiago" class="min"> 2017 - II</option>
-      <option value="lima">Lima</option>
-      <hr>
-      <option value="lima" class="min">2017 - I</option>
-      <option value="lima" class="min">2017- II</option>
-      <option value="arequipa">Arequipa</option>
-      <hr>
-      <option value="requipa" class="min">2017- I</option>
-      <option value="arequipa" class="min">2017- II</option>
-      <option value="mexico">Ciudad de Mexico</option>
-      <hr>
-      <option value="mexico"class="min">2017- I</option>
-      <option value="mexico" class="min"> 2017- II</option>
-    </select>
 
-    <div class="seleccionar">
+    <section id="uno">
+      <select class="sedes">
+        <option value="santiago">Santiago de Chile</option>
+        <hr>
+        <option value="santiago" class="min"> 2017 - I</option>
+        <option value="santiago" class="min"> 2017 - II</option>
+        <option value="lima">Lima</option>
+        <hr>
+        <option value="lima" class="min">2017 - I</option>
+        <option value="lima" class="min">2017- II</option>
+        <option value="arequipa">Arequipa</option>
+        <hr>
+        <option value="requipa" class="min">2017- I</option>
+        <option value="arequipa" class="min">2017- II</option>
+        <option value="mexico">Ciudad de Mexico</option>
+        <hr>
+        <option value="mexico"class="min">2017- I</option>
+        <option value="mexico" class="min"> 2017- II</option>
+      </select>
+
+   <div class="seleccionar">
       <ul>
         <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabOverview" class="tab">Overview</button></li>
         <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabStudent" class="tab">Students</button></li>
         <li class="select"><button type="button" name="button" data-tab-seleccionado = "tabTeacher" class="tab">Teachers</button></li>
       </ul>
     </div>
+
+  </section>
+
     <div class="">
       <article id="overview">
         <section id="dos">
-          <div class="enrollment">
-            <h2>Enrollment</h2>
-            <img src="assets/images/bar-graph.png" alt="">
-
+          <div id="enrollment">
+            <h2>ENROLLMENT</h2>
+            <div id="contenedorStudDrop">
+              <div id="StudCurrEnr">
+                <strong>120</strong>
+              </div>
+              <div id="dropout">
+                <strong>20%</strong>
+              </div>
+            </div>
+            <div class="graficaEnroll">
+            </div>
           </div>
+
           <div class="achivement">
-            <h2>Achivement</h2>
-            <img src="assets/images/graph.png" alt="">
-
+            <h2>ACHIVEMENT</h2>
+            <div id="contenedorStudDrop">
+              <div id="StudCurrEnr">
+                <strong>105</strong>
+              </div>
+              <div id="dropout">
+                <strong>78%</strong>
+              </div>
+            </div>
+            <div id="graficaachiv">
+            </div>
           </div>
+
           <div class="nps">
-            <h2>Net Promoter Score</h2>
-            <img src="assets/images/graph.png" alt="">
-
+            <h2>NET PROMOTER SCORE</h2>
+            <div id="contenedorStudDrop">
+              <div id="StudCurrEnr">
+                <strong>105</strong>
+              </div>
+              <div id="dropout">
+                <strong>78%</strong>
+              </div>
+            </div>
+            <div id="graficaNPS">
+            </div>
           </div>
         </section>
 
-        <section id="tres">
-          <h2>Tech Skills</h2>
-          <img src="assets/images/rectangular-graphic.png" alt="">
-        </section>
         <section id="cuatro">
-          <h2>Life Skills</h2>
-          <img src="assets/images/rectangular-graphic.png" alt="">
-        </section>
+   <div id="seccioncuatro">
+     <h2>TECH SKILLS</h2>
+     <div id="StudCurrEnr">
+       <strong>120</strong>
 
-        <section id="cinco">
-          <div class="student">
-            <h2>Student Satisfaction</h2>
-            <img src="assets/images/graph.png" alt="">
+     </div>
+     <div id="dropout">
+       <strong>20%</strong>
 
-          </div>
-          <div class="teacher">
-            <h2>Teacher Ratings</h2>
-            <img src="assets/images/graph.png" alt="">
+     </div>
 
-          </div>
-          <div class="jedi">
-            <h2>Jedi Master Rating</h2>
-            <img src="assets/images/graph.png" alt="">
+     <div id="graficatech">
 
-        </section>
+     </div>
+ </section>
+
+
+
+
+
+ <div id='chart_div'></div>
+ <footer>
+ </footer>
+
+
+ </div>
+ </section>
+
+ <section id="cinco1">
+   <div id="seccioncuatro">
+     <h2>TECH SKILLS</h2>
+     <div id="StudCurrEnr">
+       <strong>120</strong>
+
+     </div>
+     <div id="dropout">
+       <strong>20%</strong>
+
+     </div>
+
+     <div id="grafic1">
+
+     </div>
+   </div>
+ </section>
+
+
+
+ <section id="cinco">
+   <div class="student">
+     <h2>Student Satisfaction</h2>
+     <img src="assets/images/graph.png" alt="">
+   </div>
+   <div class="teacher">
+     <h2>Teacher Ratings</h2>
+     <img src="assets/images/graph.png" alt="">
+
+   </div>
+   <div class="jedi">
+     <h2>Jedi Master Rating</h2>
+     <img src="assets/images/graph.png" alt="">
+   </div>
+
+       </section>
         </article>
-        <article id="student">Student</article>
-        <article id="teacher">Teacher</article>
 
       </div>
-    </section>
+     </section>
+
+        <article id="student">Aca va caleta de iinfo super bacan de las estudiantes</article>
+        <article id="teacher">Lo mismo pero para los profes</article>
 
 
-    <footer>
+
+
+   <footer>
     </footer>
 
-		<!-- Base de datos -->
-		<script src="./js/data.js"></script>
-		<!-- Aquí va tus archivos JS -->
+        <!-- Base de datos -->
+        <script src="./js/data.js"></script>
+        <!-- Aquí va tus archivos JS -->
     <script src="./js/app.js"></script>
   </body>
 </html>
