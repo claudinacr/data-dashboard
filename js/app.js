@@ -1,100 +1,242 @@
 //cambiar contenido segun boton del menu
-var mostrarOcultar = function(e){
-  var tabSeleccionado = e.target.dataset.tabSeleccionado;
-  var overview = document.getElementById("overview");
-  var student = document.getElementById("student");
-  var teacher = document.getElementById("teacher");
-  if (tabSeleccionado === "tabOverview"){
-    console.log ("overview");
-    student.style.display="none"; //oculta pantalla student
-    teacher.style.display="none"; //oculta pantalla teacher
-    overview.style.display="block"; //muestra pantalla overview
-  } else if (tabSeleccionado === "tabStudent"){
-    console.log("Student");
-    student.style.display="block"; //muestra pantalla student
-    teacher.style.display="none"; //oculta pantalla teacher
-    overview.style.display="none"; //oculta pantalla overview
-  }else if (tabSeleccionado === "tabTeacher"){
-    console.log("Teacher");
-    student.style.display="none"; //oculta pantalla student
-    teacher.style.display="block"; //muestra pantalla teacher
-    overview.style.display="none"; //oculta pantalla overview
-  }
+var mostrarOcultar = function (e) {
+    var tabSeleccionado = e.target.dataset.tabSeleccionado;
+    var overview = document.getElementById("overview");
+    var student = document.getElementById("student");
+    var teacher = document.getElementById("teacher");
+    if (tabSeleccionado === "tabOverview") {
+        console.log("overview");
+        student.style.display = "none"; //oculta pantalla student
+        teacher.style.display = "none"; //oculta pantalla teacher
+        overview.style.display = "block"; //muestra pantalla overview
+    } else if (tabSeleccionado === "tabStudent") {
+        console.log("Student");
+        student.style.display = "block"; //muestra pantalla student
+        teacher.style.display = "none"; //oculta pantalla teacher
+        overview.style.display = "none"; //oculta pantalla overview
+    } else if (tabSeleccionado === "tabTeacher") {
+        console.log("Teacher");
+        student.style.display = "none"; //oculta pantalla student
+        teacher.style.display = "block"; //muestra pantalla teacher
+        overview.style.display = "none"; //oculta pantalla overview
+    }
 }
-var cargarPag = function(){
-  var elementosTab = document.getElementsByClassName("tab");
-  for (var i = 0; i < elementosTab.length; i++) {
-    elementosTab[i].addEventListener("click" , mostrarOcultar);
-  }
+var cargarPag = function () {
+    var elementosTab = document.getElementsByClassName("tab");
+    for (var i = 0; i < elementosTab.length; i++) {
+        elementosTab[i].addEventListener("click", mostrarOcultar);
+    }
 }
 cargarPag();
+
+// Agregar Valores de las sedes al Select de Sedes en HTML
+var dropsede = document.querySelector('.sede');
+var dropsedeoptions = dropsede.getElementsByTagName('option');
+
+var dropgen = document.querySelector('.generacion');
+
+for (let i = 0; i < dropsedeoptions.length; i++) {
+
+    dropsedeoptions[i].setAttribute('value', (Object.keys(data)[i]));
+
+}
+
+dropsede.onchange = function (event) {
+    genSelect(event.target.value);
+    graficarTodo();
+};
+
+dropgen.onchange = function () {
+    graficarTodo();
+}
+
+function genSelect(sede) {
+
+    var datagene = Object.keys(data[sede]);
+
+    dropgen.innerHTML = "";
+
+    for (let i = 0; i < datagene.length; i++) {
+        var option = document.createElement('option');
+        option.setAttribute('value', datagene[i]);
+        option.appendChild(document.createTextNode(datagene[i]));
+        dropgen.appendChild(option);
+    }
+}
+
+
+
+window.onload = function () {
+    dropsede.options[0].setAttribute('selected', 'selected');
+    genSelect(dropsede.value);
+
+};
+
+
+//FUNCIONES AUXILIARES
+/* Cantidad de Alumnas por Sede */
+function AlumnasSede(sede) {
+    var totalEstudiantes = 0;
+    for (var gen in data[sede]) {
+
+        totalEstudiantes += data[sede][gen]['students'].length;
+
+    }
+    return totalEstudiantes;
+}
+// console.log(AlumnasSede('AQP'));
+
+/* Cantidad de Alimnas por Sede */
+
+function AlumnaporGen(sede, gen) {
+    return data[sede][gen]['students'].length;
+}
+// console.log(AlumnaporGen('CDMX'));
+
+/* El porcentaje de deserción de estudiantes por Sede y por Generación. */
+
+function DeserEstGen(sede, gen) {
+    var estudiantes = data[sede][gen]['students'];
+    var cantDeser = 0;
+    for (let i = 0; i < estudiantes.length; i++) {
+        if (estudiantes[i]['active'] === false) {
+            cantDeser++;
+        }
+
+
+    }
+    return cantDeser;
+}
+
+function promedioSprintPorGen(sede, gen) {
+
+    var estudiantes = data[sede][gen]['students'];
+
+    var promSprints = [];
+    var sumaSprints = [0, 0, 0, 0];
+    var metaSprints70 = 4000;
+    var estudiantesSup = 0;
+    ;
+    for (let i = 0; i < estudiantes.length; i++) {
+        var sumaIndiv = 0;
+
+        const estudiante = estudiantes[i];
+
+        var sprints = estudiante['sprints'];
+
+        if (sprints && sprints.length > 0) {
+            for (let j = 0; j < sprints.length; j++) {
+                const sprint = sprints[j];
+
+                sumaSprints[j] += sprint['score']['tech'] + sprint['score']['hse'];
+                sumaIndiv += sprint['score']['tech'] + sprint['score']['hse'];
+            }
+
+            if (sumaIndiv >= metaSprints70) {
+                estudiantesSup++;
+            }
+
+        }
+
+
+    }
+
+
+    for (let i = 0; i < sumaSprints.length; i++) {
+
+        promSprints.push(sumaSprints[i] / estudiantes.length);
+
+    }
+    promSprints.push(estudiantesSup);
+    return promSprints;
+
+}
 
 /* DATA GRAFICADA SANTIAGO DE CHILE */
 
 /* GENERACIÓN 2017 II */
 /* El total de estudiantes presentes por sede y generación. */
 google.charts.load("current", { packages: ['corechart'] });
-google.charts.setOnLoadCallback(drawChartoo);
-function drawChartoo() {
-    var data = google.visualization.arrayToDataTable([
-        ["Element", "Estudiantes Activas", { role: "style" }],
-        ["S1", 59, "#b87333"],
-        ["S2", 50, "silver"],
-        ["S3", 40, "gold"],
-        ["S4", 30, "color: #e5e4e2"]
+google.charts.setOnLoadCallback(graficarTodo);
+
+function graficarTodo() {
+    grafTortaDesercion();
+    grafPromSprints();
+
+}
+
+// Grafica de % de Deserción
+function grafTortaDesercion() {
+
+    var txt_totalAlumnas = document.getElementById('StudCurrEnr').firstElementChild;
+    var txt_porDesercion = document.getElementById('dropout').firstElementChild;
+
+    var alumnasdeGen = AlumnaporGen(dropsede.value, dropgen.value);
+
+    var alumnasdeser = DeserEstGen(dropsede.value, dropgen.value);
+    var alumnasactivas = alumnasdeGen - alumnasdeser;
+
+    var porcenDer = alumnasdeser / alumnasdeGen * 100;
+
+    txt_totalAlumnas.textContent = alumnasdeGen;
+    txt_porDesercion.textContent = porcenDer.toFixed(2) + "%";
+
+    var datos = new google.visualization.DataTable();
+    datos.addColumn('string', 'Topping');
+    datos.addColumn('number', 'Slices');
+    datos.addRows([
+        ['Activas', alumnasactivas],
+        ['Inactivas', alumnasdeser],
     ]);
 
-    var view = new google.visualization.DataView(data);
-    view.setColumns([0, 1,
-        {
-            calc: "stringify",
-            sourceColumn: 1,
-            type: "string",
-            role: "annotation"
-        },
-        2]);
-
+    // Set chart options
     var options = {
-        width: 350,
-        height: 200,
-        bar: { groupWidth: "70%" },
-        legend: { position: "none" },
-        backgroundColor: 'none',
-
-
+        title: ''
 
     };
-    var chart = new google.visualization.ColumnChart(document.querySelector(".graficaEnroll"));
-    chart.draw(view, options);
+
+    var chart = new google.visualization.PieChart(document.getElementById("graficaEnroll"));
+    chart.draw(datos, options);
+
 }
 
 /* El porcentaje de deserción de estudiantes. */
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawCharto);
 
-function drawCharto() {
 
-    var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['S1', 11],
-        ['S2', 2],
-        ['S3', 3],
-        ['S4', 4]
+function grafPromSprints() {
+
+    var promSprints = promedioSprintPorGen(dropsede.value, dropgen.value);
+
+
+    var txt_alumnasMeta = document.getElementById('StudCurrAchievement').firstElementChild;
+    var txt_porcAlumnasMeta = document.getElementById('metasup').firstElementChild;
+
+    var porcMeta = promSprints[4] / AlumnaporGen(dropsede.value, dropgen.value) * 100;
+
+
+    var datos = google.visualization.arrayToDataTable([
+        ['Sprint', 'Promedio'],
+        ['S1', promSprints[0]],
+        ['S2', promSprints[1]],
+        ['S3', promSprints[2]],
+        ['S4', promSprints[3]]
     ]);
+
+    txt_alumnasMeta.textContent = promSprints[4];
+    txt_porcAlumnasMeta.textContent = porcMeta.toFixed(2) + "%";
 
     var options = {
         title: ''
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('graficaachiv'));
+    var chart = new google.visualization.LineChart(document.getElementById('graficaachiv'));
 
-    chart.draw(data, options);
+    chart.draw(datos, options);
 }
 
 /* La cantidad de estudiantes que superan la meta de puntos en promedio de todos los sprints cursados. La meta de puntos es 70% del total de puntos. */
 
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
+
 
 function drawChart() {
 
@@ -116,9 +258,6 @@ function drawChart() {
 }
 
 /* HISTOGRAMA*/
-
-google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawCharttech);
 function drawCharttech() {
     var data = google.visualization.arrayToDataTable([
         ['Dinosaur', 'Length'],
@@ -160,9 +299,6 @@ function drawCharttech() {
     chart.draw(data, options);
 }
 
-
-google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawCharttech1);
 function drawCharttech1() {
     var data = google.visualization.arrayToDataTable([
         ['Dinosaur', 'Length'],

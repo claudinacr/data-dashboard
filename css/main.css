@@ -17,7 +17,6 @@ header {
 }
 
 #uno {
-
     background-color: #E0E0E0;
 }
 
@@ -28,41 +27,51 @@ header {
     background-color: #F7F7F7;
 }
 
-hr{
-  height: 5px;
-  color: #fbbc00;
+hr {
+    height: 5px;
+    color: #fbbc00;
 }
 
-.min{
-  font-size: 14px;
+.min {
+    font-size: 14px;
 }
 
-.sedes{
-  font-family: 'Francois One', sans-serif;
-  font-size: 20px;
-  text-transform: uppercase;
-  border: none;
-  margin: 10px;
+.sede {
+    font-family: 'Francois One', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: none;
+    margin: 10px;
 }
 
-ul{
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.generacion {
+    font-family: 'Francois One', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: none;
+    margin: 10px;
 }
 
-li{
-  list-style: none;
+ul {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.tab{
-  border-bottom: 4px solid #fbbc00;
-  font-family: 'Francois One', sans-serif;
-  font-size: 20px;
+li {
+    list-style: none;
 }
 
-.enrollment,.achivement,.nps {
+.tab {
+    border-bottom: 4px solid #fbbc00;
+    font-family: 'Francois One', sans-serif;
+    font-size: 20px;
+}
+
+.enrollment,
+.achivement,
+.nps {
     width: 356px;
     margin: 30px;
     background-color: white;
