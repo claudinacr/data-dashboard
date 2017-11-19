@@ -152,6 +152,54 @@ function promedioSprintPorGen(sede, gen) {
 
 }
 
+function NPSPorGen(sede, gen) {
+    var ratings = data[sede][gen]['ratings'];
+    var nps = [];
+    for (let i = 0; i < ratings.length; i++) {
+        const rating = ratings[i];
+
+        nps.push(rating['nps']['promoters'] - rating['nps']['detractors']);
+
+    }
+
+    return nps
+}
+
+function acumNPSPorGen(sede, gen) {
+    var ratings = data[sede][gen]['ratings'];
+    var npsacum = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        const rating = ratings[i];
+
+        npsacum += rating['nps']['promoters'] - rating['nps']['detractors'];
+
+    }
+    npsacum /= ratings.length;
+
+    return npsacum
+}
+
+function promNPSPorGen(sede, gen) {
+    var ratings = data[sede][gen]['ratings'];
+    var promnps = [0, 0, 0];
+    for (let i = 0; i < ratings.length; i++) {
+        const rating = ratings[i];
+
+        promnps[0] += rating['nps']['promoters'];
+        promnps[1] += rating['nps']['passive'];
+        promnps[2] += rating['nps']['detractors'];
+
+    }
+
+    for (let i = 0; i < promnps.length; i++) {
+        promnps[i] /= 3;
+
+    }
+
+
+    return promnps
+}
+
 /* DATA GRAFICADA SANTIAGO DE CHILE */
 
 /* GENERACIÓN 2017 II */
@@ -162,6 +210,7 @@ google.charts.setOnLoadCallback(graficarTodo);
 function graficarTodo() {
     grafTortaDesercion();
     grafPromSprints();
+    grafNPS();
 
 }
 
@@ -238,23 +287,45 @@ function grafPromSprints() {
 
 
 
-function drawChart() {
+function grafNPS() {
 
-    var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['S1', 1],
-        ['S2', 2],
-        ['S3', 2],
-        ['S4', 2],
+    var npsSprints = NPSPorGen(dropsede.value, dropgen.value);
+
+    var npsacum = acumNPSPorGen(dropsede.value, dropgen.value);
+
+    var promnps = promNPSPorGen(dropsede.value, dropgen.value);
+
+
+    var txt_acumNPS = document.getElementById('StudCurrEnrNPS');
+    var txt_promNPS = document.getElementById('nps');
+
+    var label = [' Promoters', ' Passive', ' Detractors'];
+
+    txt_acumNPS.innerHTML = "";
+    txt_promNPS.innerHTML = "";
+
+    txt_acumNPS.textContent = npsacum + '%';
+    for (let i = 0; i < promnps.length; i++) {
+        txt_promNPS.appendChild(document.createTextNode(promnps[i] + "%" + label[i]));
+        txt_promNPS.appendChild(document.createElement('br'));
+    }
+    txt_promNPS.style.fontWeight = 'bold';
+
+    var datos = google.visualization.arrayToDataTable([
+        ['Sprint', 'NPS'],
+        ['S1', npsSprints[0]],
+        ['S2', npsSprints[1]],
+        ['S3', npsSprints[2]],
+        ['S4', npsSprints[3]],
     ]);
 
     var options = {
         title: ''
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('graficaNPS'));
+    var chart = new google.visualization.LineChart(document.getElementById('graficaNPS'));
 
-    chart.draw(data, options);
+    chart.draw(datos, options);
 }
 
 /* HISTOGRAMA*/
