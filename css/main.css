@@ -185,6 +185,15 @@ button {
     float: left;
 }
 
+.unicornios {
+    background-color: white;
+    display: flex;
+    width: 88.5%;
+    margin-left: 4.5%;
+    padding-left: 2em;
+    margin-top: 55px;
+}
+
 img[src="assets/images/circle-graphic.png"] {
     width: 30%;
 }

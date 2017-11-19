@@ -393,6 +393,25 @@ function drawCharttech() {
 
     var numalcameta = 0;
 
+    console.log(sprintScoreList);
+    console.log(Math.max.apply(Math, sprintScoreList));
+
+    var imgcoder = document.getElementById('imgcoder');
+    var maxScore = Math.max.apply(Math, sprintScoreList);
+    console.log(maxScore);
+
+    var indexMax = sprintScoreList.indexOf(maxScore);
+    console.log(indexMax);
+
+    var namecoder = studentList[indexMax];
+
+    console.log(namecoder);
+
+
+    var txt_namecoder = document.getElementById('namecoder');
+    txt_namecoder.textContent = namecoder;
+
+
 
     console.log(arraydata);
 
