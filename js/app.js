@@ -250,7 +250,8 @@ function grafTortaDesercion() {
 
     // Set chart options
     var options = {
-        title: ''
+        title: '',
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
 
     };
 
@@ -285,7 +286,8 @@ function grafPromSprints() {
     txt_porcAlumnasMeta.textContent = porcMeta.toFixed(2) + "%";
 
     var options = {
-        title: ''
+        title: '',
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficaachiv'));
@@ -328,7 +330,8 @@ function grafNPS() {
     ]);
 
     var options = {
-        title: ''
+        title: '',
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficaNPS'));
@@ -427,11 +430,12 @@ function drawCharttech() {
 
     var options = {
         title: '',
-        legend: { position: 'none' },
+        colors: ['#333333', '#F9A91A', '#B37405', '#F7F7F7']
     };
     var options2 = {
         title: '',
-        legend: { position: 'none' },
+        colors: ['#F9A91A', '#B37405', '#F7F7F7', '#333333'],
+        is3D: true
     };
 
     var chart = new google.visualization.Histogram(document.getElementById('graficatech'));
@@ -489,11 +493,12 @@ function drawCharthse() {
 
     var options = {
         title: '',
-        legend: { position: 'none' },
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
     };
     var options2 = {
         title: '',
-        legend: { position: 'none' },
+        colors: ['#F9A91A', '#B37405', '#F7F7F7', '#333333'],
+        is3D: true
     };
 
     var chart = new google.visualization.Histogram(document.getElementById('graficaHSE'));
@@ -555,8 +560,8 @@ function grafSatisfaccion() {
 
     // Set chart options
     var options = {
-        title: ''
-
+        title: '',
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
     };
 
     var chart = new google.visualization.LineChart(document.getElementById("studentSatis"));
@@ -615,7 +620,8 @@ function grafTeacher() {
 
     // Set chart options
     var options = {
-        title: ''
+        title: '',
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
 
     };
 
@@ -675,7 +681,8 @@ function grafJedi() {
 
     // Set chart options
     var options = {
-        title: ''
+        title: '',
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
 
     };
 
