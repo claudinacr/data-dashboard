@@ -5,17 +5,18 @@ var mostrarOcultar = function (e) {
     var student = document.getElementById("student");
     var teacher = document.getElementById("teacher");
     if (tabSeleccionado === "tabOverview") {
-        console.log("overview");
+        //console.log("overview");
         student.style.display = "none"; //oculta pantalla student
         teacher.style.display = "none"; //oculta pantalla teacher
         overview.style.display = "block"; //muestra pantalla overview
     } else if (tabSeleccionado === "tabStudent") {
-        console.log("Student");
+        //console.log("Student");
         student.style.display = "block"; //muestra pantalla student
         teacher.style.display = "none"; //oculta pantalla teacher
         overview.style.display = "none"; //oculta pantalla overview
+        studentByGen();
     } else if (tabSeleccionado === "tabTeacher") {
-        console.log("Teacher");
+        //console.log("Teacher");
         student.style.display = "none"; //oculta pantalla student
         teacher.style.display = "block"; //muestra pantalla teacher
         overview.style.display = "none"; //oculta pantalla overview
@@ -46,10 +47,12 @@ for (let i = 0; i < dropsedeoptions.length; i++) {
 dropsede.onchange = function (event) {
     genSelect(event.target.value);
     graficarTodo();
+    studentByGen();
 };
 
 dropgen.onchange = function () {
     graficarTodo();
+    studentByGen();
 }
 
 
@@ -73,11 +76,18 @@ function genSelect(sede) {
 }
 
 
-
 window.onload = function () {
     dropsede.options[0].setAttribute('selected', 'selected');
     genSelect(dropsede.value);
     dropsprint.options[0].setAttribute('selected', 'selected');
+    var overview = document.getElementById("overview");
+    var student = document.getElementById("student");
+    var teacher = document.getElementById("teacher");
+    overview.style.display = "block"; //muestra panta
+    student.style.display = "none"; //oculta pantalla student
+    teacher.style.display = "none"; //oculta pantalla teacher
+    //studentByGen(dropsede.value, dropgen.value);
+
 
 };
 
@@ -95,10 +105,10 @@ function AlumnasSede(sede) {
 }
 // console.log(AlumnasSede('AQP'));
 
-/* Cantidad de Alimnas por Sede */
+/* Array de Alumnas por Sede */
 
-function AlumnaporGen(sede, gen) {
-    return data[sede][gen]['students'].length;
+function AlumnasporGen(sede, gen) {
+    return data[sede][gen]['students'];
 }
 // console.log(AlumnaporGen('CDMX'));
 
@@ -230,7 +240,7 @@ function grafTortaDesercion() {
     var txt_totalAlumnas = document.getElementById('StudCurrEnr').firstElementChild;
     var txt_porDesercion = document.getElementById('dropout').firstElementChild;
 
-    var alumnasdeGen = AlumnaporGen(dropsede.value, dropgen.value);
+    var alumnasdeGen = AlumnasporGen(dropsede.value, dropgen.value).length;
 
     var alumnasdeser = DeserEstGen(dropsede.value, dropgen.value);
     var alumnasactivas = alumnasdeGen - alumnasdeser;
@@ -271,7 +281,7 @@ function grafPromSprints() {
     var txt_alumnasMeta = document.getElementById('StudCurrAchievement').firstElementChild;
     var txt_porcAlumnasMeta = document.getElementById('metasup').firstElementChild;
 
-    var porcMeta = promSprints[4] / AlumnaporGen(dropsede.value, dropgen.value) * 100;
+    var porcMeta = promSprints[4] / AlumnasporGen(dropsede.value, dropgen.value).length * 100;
 
 
     var datos = google.visualization.arrayToDataTable([
@@ -314,9 +324,9 @@ function grafNPS() {
     txt_acumNPS.innerHTML = "";
     txt_promNPS.innerHTML = "";
 
-    txt_acumNPS.textContent = npsacum + '%';
+    txt_acumNPS.textContent = npsacum.toFixed(2) + '%';
     for (let i = 0; i < promnps.length; i++) {
-        txt_promNPS.appendChild(document.createTextNode(promnps[i] + "%" + label[i]));
+        txt_promNPS.appendChild(document.createTextNode(promnps[i].toFixed(2) + "%" + label[i]));
         txt_promNPS.appendChild(document.createElement('br'));
     }
     txt_promNPS.style.fontWeight = 'bold';
@@ -348,7 +358,11 @@ function techPorSprint(sede, gene, numSprint) {
     for (let i = 0; i < students.length; i++) {
         const student = students[i];
 
-        techScores.push(student['sprints'][numSprint]['score']['tech']);
+        if (student['sprints'] && student['sprints'].length > 0) {
+            techScores.push(student['sprints'][numSprint]['score']['tech']);
+        }
+
+
 
     }
 
@@ -362,8 +376,10 @@ function hsePorSprint(sede, gene, numSprint) {
     for (let i = 0; i < students.length; i++) {
         const student = students[i];
 
-        hseScores.push(student['sprints'][numSprint]['score']['hse']);
+        if (student['sprints'] && student['sprints'].length > 0) {
 
+            hseScores.push(student['sprints'][numSprint]['score']['hse']);
+        }
     }
 
     return hseScores;
@@ -393,27 +409,25 @@ function drawCharttech() {
 
     var numalcameta = 0;
 
-    console.log(sprintScoreList);
-    console.log(Math.max.apply(Math, sprintScoreList));
-
-    var imgcoder = document.getElementById('imgcoder');
-    var maxScore = Math.max.apply(Math, sprintScoreList);
-    console.log(maxScore);
-
-    var indexMax = sprintScoreList.indexOf(maxScore);
-    console.log(indexMax);
-
-    var namecoder = studentList[indexMax];
-
-    console.log(namecoder);
-
-
-    var txt_namecoder = document.getElementById('namecoder');
-    txt_namecoder.textContent = namecoder;
+    /*     //console.log(sprintScoreList);
+        //console.log(Math.max.apply(Math, sprintScoreList));
+    
+        var imgcoder = document.getElementById('imgcoder');
+        var maxScore = Math.max.apply(Math, sprintScoreList);
+        //console.log(maxScore);
+    
+        var indexMax = sprintScoreList.indexOf(maxScore);
+        //console.log(indexMax);
+    
+        var namecoder = studentList[indexMax];
+    
+        console.log(namecoder);
+        var txt_namecoder = document.getElementById('namecoder');
+        txt_namecoder.textContent = namecoder; */
 
 
 
-    console.log(arraydata);
+    //console.log(arraydata);
 
     for (let i = 0; i < studentList.length; i++) {
         var mergeArray = [];
@@ -476,7 +490,7 @@ function drawCharthse() {
     var numalcameta = 0;
 
 
-    console.log(arraydata);
+    //console.log(arraydata);
 
     for (let i = 0; i < studentList.length; i++) {
         var mergeArray = [];
@@ -621,7 +635,7 @@ function grafTeacher() {
 
     var txt_teacherTxt = document.getElementById('teacherTxt').firstElementChild;
 
-    txt_teacherTxt.textContent = porcAcumTeacher(dropsede.value, dropgen.value) + "%";
+    txt_teacherTxt.textContent = porcAcumTeacher(dropsede.value, dropgen.value).toFixed(2) + "%";
 
     var teacherSprints = promTeacher(dropsede.value, dropgen.value);
 
@@ -682,7 +696,7 @@ function grafJedi() {
 
     var txt_jediTxt = document.getElementById('jediTxt').firstElementChild;
 
-    txt_jediTxt.textContent = porcAcumJedi(dropsede.value, dropgen.value) + "%";
+    txt_jediTxt.textContent = porcAcumJedi(dropsede.value, dropgen.value).toFixed(2) + "%";
 
     var jediSprints = promJedi(dropsede.value, dropgen.value);
 
@@ -709,3 +723,70 @@ function grafJedi() {
     chart.draw(datos, options);
 
 }
+
+
+// Info Sección Students
+
+var studentinfo = document.createElement('div');
+studentinfo.className = 'studentinfo';
+var stuphoto = document.createElement('div');
+stuphoto.className = 'stuphoto';
+stuphoto.appendChild(document.createElement('img'));
+
+var stuname = document.createElement('div');
+stuname.className = 'stuname';
+stuname.appendChild(document.createElement('h2'))
+
+var stuscores = document.createElement('div');
+stuscores.className = 'stuscores';
+var techPer = document.createElement('div');
+techPer.className = 'techPer';
+techPer.appendChild(document.createElement('h3'));
+var lifePer = document.createElement('div');
+lifePer.className = 'lifePer';
+lifePer.appendChild(document.createElement('h3'));
+stuscores.appendChild(techPer);
+stuscores.appendChild(lifePer);
+var auxdiv = document.createElement('div');
+
+auxdiv.appendChild(stuname);
+auxdiv.appendChild(stuscores);
+studentinfo.appendChild(stuphoto);
+studentinfo.appendChild(auxdiv);
+
+
+
+function studentByGen() {
+
+    var students = AlumnasporGen(dropsede.value, dropgen.value);
+    //console.log(students);
+
+    var studentsList = document.getElementById('student');
+    studentsList.innerHTML = "";
+
+
+    for (let i = 0; i < students.length; i++) {
+        students[i];
+
+        var newstudentInfo = studentinfo.cloneNode(true);
+        newstudentInfo.querySelector('.stuphoto').firstElementChild.setAttribute('src', 'assets/images/girl.png');
+        newstudentInfo.querySelector('.stuname').firstElementChild.textContent = students[i]['name'];
+
+        var newstuscore = newstudentInfo.querySelector('.stuscores');
+
+        if (students[i]['sprints'] && students[i]['sprints'].length > 0) {
+
+            newstuscore.querySelector('.techPer').firstElementChild.textContent = students[i]['sprints'][0]['score']['tech'];
+            newstuscore.querySelector('.lifePer').firstElementChild.textContent = students[i]['sprints'][0]['score']['hse'];
+        } else {
+            newstuscore.querySelector('.techPer').firstElementChild.textContent = 0;
+            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 0;
+        }
+
+        studentsList.appendChild(newstudentInfo);
+    }
+
+
+
+}
+
