@@ -50,6 +50,9 @@ header {
     flex-direction: row;
     justify-content: center;
     background-color: #F7F7F7;
+    /* border: 1px blue solid; */
+    align-items: stretch;
+    padding-top: 2em;
 }
 
 hr {
@@ -67,7 +70,7 @@ hr {
     text-transform: uppercase;
     border: none;
     margin: 10px;
-    padding-left: 1.3em;
+    margin-left: 4.7em;
 }
 
 .generacion {
@@ -107,7 +110,7 @@ button {
 .achivement,
 .nps {
     width: 356px;
-    margin: 30px;
+    margin: 15px;
     background-color: white;
     /* border: 1px blue solid; */
 }
@@ -174,7 +177,7 @@ img[src="assets/images/circle-graphic.png"] {
     padding: 50px;
     padding-top: 0;
     margin-top: 0;
-    border: 1px blue solid;
+    /* border: 1px blue solid; */
 }
 
 #cinco div {
@@ -212,6 +215,8 @@ ul {
 
 .sede {
     /* border: 1px blue solid; */
-    padding-left: 4em;
-    ;
+}
+
+.Prim3Grafs {
+    /* border: 1px blue solid; */
 }
