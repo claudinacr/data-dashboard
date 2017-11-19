@@ -209,10 +209,6 @@ function promNPSPorGen(sede, gen) {
     return promnps
 }
 
-/* DATA GRAFICADA SANTIAGO DE CHILE */
-
-/* GENERACIÓN 2017 II */
-/* El total de estudiantes presentes por sede y generación. */
 google.charts.load("current", { packages: ['corechart'] });
 google.charts.setOnLoadCallback(graficarTodo);
 
@@ -222,6 +218,9 @@ function graficarTodo() {
     grafNPS();
     drawCharttech();
     drawCharthse();
+    grafSatisfaccion();
+    grafTeacher();
+    grafJedi();
 
 }
 
@@ -260,8 +259,8 @@ function grafTortaDesercion() {
 
 }
 
-/* El porcentaje de deserción de estudiantes. */
 
+// Grafica de Promedio de Sprints
 
 function grafPromSprints() {
 
@@ -294,10 +293,8 @@ function grafPromSprints() {
     chart.draw(datos, options);
 }
 
-/* La cantidad de estudiantes que superan la meta de puntos en promedio de todos los sprints cursados. La meta de puntos es 70% del total de puntos. */
 
-
-
+// Grafica de NPS Promedio por Generacion
 function grafNPS() {
 
     var npsSprints = NPSPorGen(dropsede.value, dropgen.value);
@@ -340,11 +337,11 @@ function grafNPS() {
 }
 
 
-
+//Funcion de retorna Tech Scores por Sprint
 function techPorSprint(sede, gene, numSprint) {
 
     var students = data[sede][gene]['students'];
-    var techScores = []
+    var techScores = [];
     for (let i = 0; i < students.length; i++) {
         const student = students[i];
 
@@ -354,7 +351,7 @@ function techPorSprint(sede, gene, numSprint) {
 
     return techScores;
 }
-
+//Funcion de retorna HSE Scores por Sprint
 function hsePorSprint(sede, gene, numSprint) {
 
     var students = data[sede][gene]['students'];
@@ -368,7 +365,7 @@ function hsePorSprint(sede, gene, numSprint) {
 
     return hseScores;
 }
-
+//Funcion de retorna lista de Nombres de Estudiantes
 function studentNames(sede, gene) {
 
     var students = data[sede][gene]['students'];
@@ -382,6 +379,7 @@ function studentNames(sede, gene) {
 }
 
 /* HISTOGRAMA*/
+// Grafica de Tech Score por Sprint
 function drawCharttech() {
 
     var metaTech = [1800 * 0.7, 3600 * 0.7, 1800 * 0.7, 3600 * 0.7];
@@ -443,6 +441,7 @@ function drawCharttech() {
     chart2.draw(data2, options2);
 }
 
+// Grafica de HSE Score por Sprint
 function drawCharthse() {
 
     var metahse = [1200 * 0.7, 2400 * 0.7, 1200 * 0.7, 2400 * 0.7];
@@ -502,4 +501,185 @@ function drawCharthse() {
 
     var chart2 = new google.visualization.PieChart(document.getElementById('graficaHSEPie'));
     chart2.draw(data2, options2);
+}
+
+
+function porcAcumSupera(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var porAcum = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        porAcum += ratings[i]['student']['supera'];
+
+    }
+
+    return porAcum;
+}
+
+function promSupera(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var supera = []
+
+    for (let i = 0; i < ratings.length; i++) {
+        supera.push(ratings[i]['student']['supera']);
+
+    }
+
+    return supera;
+}
+
+
+//Graficas de Satisfaccion y Promedio de Teachers y Jedi Masters
+function grafSatisfaccion() {
+
+    var txt_satisfacTxt = document.getElementById('satisfacTxt').firstElementChild;
+
+    txt_satisfacTxt.textContent = porcAcumSupera(dropsede.value, dropgen.value) + "%";
+
+    var superaSprints = promSupera(dropsede.value, dropgen.value);
+
+
+
+    var datos = new google.visualization.DataTable();
+    datos.addColumn('string', 'Topping');
+    datos.addColumn('number', 'Slices');
+    datos.addRows([
+        ['S1', superaSprints[0]],
+        ['S2', superaSprints[1]],
+        ['S3', superaSprints[2]],
+        ['S4', superaSprints[3]]
+    ]);
+
+    // Set chart options
+    var options = {
+        title: ''
+
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById("studentSatis"));
+    chart.draw(datos, options);
+
+}
+
+function porcAcumTeacher(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var porAcumTeacher = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        porAcumTeacher += ratings[i]['teacher'];
+
+    }
+
+    return porAcumTeacher;
+}
+
+function promTeacher(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var teacher = []
+
+    for (let i = 0; i < ratings.length; i++) {
+        teacher.push(ratings[i]['teacher']);
+
+    }
+
+    return teacher;
+}
+
+
+//Graficas de Satisfaccion y Promedio de Teachers y Jedi Masters
+function grafTeacher() {
+
+    var txt_teacherTxt = document.getElementById('teacherTxt').firstElementChild;
+
+    txt_teacherTxt.textContent = porcAcumTeacher(dropsede.value, dropgen.value) + "%";
+
+    var teacherSprints = promTeacher(dropsede.value, dropgen.value);
+
+
+
+    var datos = new google.visualization.DataTable();
+    datos.addColumn('string', 'Topping');
+    datos.addColumn('number', 'Slices');
+    datos.addRows([
+        ['S1', teacherSprints[0]],
+        ['S2', teacherSprints[1]],
+        ['S3', teacherSprints[2]],
+        ['S4', teacherSprints[3]]
+    ]);
+
+    // Set chart options
+    var options = {
+        title: ''
+
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById("teacherScore"));
+    chart.draw(datos, options);
+
+}
+
+function porcAcumJedi(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var porAcumJedi = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        porAcumJedi += ratings[i]['jedi'];
+
+    }
+
+    return porAcumJedi;
+}
+
+function promJedi(sede, gen) {
+
+    var ratings = data[sede][gen]['ratings'];
+
+    var jedi = []
+
+    for (let i = 0; i < ratings.length; i++) {
+        jedi.push(ratings[i]['jedi']);
+
+    }
+
+    return jedi;
+}
+
+
+//Graficas de Satisfaccion y Promedio de Teachers y Jedi Masters
+function grafJedi() {
+
+    var txt_jediTxt = document.getElementById('jediTxt').firstElementChild;
+
+    txt_jediTxt.textContent = porcAcumJedi(dropsede.value, dropgen.value) + "%";
+
+    var jediSprints = promJedi(dropsede.value, dropgen.value);
+
+
+
+    var datos = new google.visualization.DataTable();
+    datos.addColumn('string', 'Topping');
+    datos.addColumn('number', 'Slices');
+    datos.addRows([
+        ['S1', jediSprints[0]],
+        ['S2', jediSprints[1]],
+        ['S3', jediSprints[2]],
+        ['S4', jediSprints[3]]
+    ]);
+
+    // Set chart options
+    var options = {
+        title: ''
+
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById("jediScore"));
+    chart.draw(datos, options);
+
 }
