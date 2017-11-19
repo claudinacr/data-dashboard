@@ -55,6 +55,7 @@ dropgen.onchange = function () {
 
 dropsprint.onchange = function () {
     drawCharttech();
+    drawCharthse();
 }
 
 function genSelect(sede) {
@@ -220,6 +221,7 @@ function graficarTodo() {
     grafPromSprints();
     grafNPS();
     drawCharttech();
+    drawCharthse();
 
 }
 
@@ -441,43 +443,63 @@ function drawCharttech() {
     chart2.draw(data2, options2);
 }
 
-function drawCharttech1() {
-    var data = google.visualization.arrayToDataTable([
-        ['Dinosaur', 'Length'],
-        ['Acrocanthosaurus (top-spined lizard)', 12.2],
-        ['Albertosaurus (Alberta lizard)', 9.1],
-        ['Allosaurus (other lizard)', 12.2],
-        ['Apatosaurus (deceptive lizard)', 22.9],
-        ['Archaeopteryx (ancient wing)', 0.9],
-        ['Argentinosaurus (Argentina lizard)', 36.6],
-        ['Baryonyx (heavy claws)', 9.1],
-        ['Brachiosaurus (arm lizard)', 30.5],
-        ['Ceratosaurus (horned lizard)', 6.1],
-        ['Coelophysis (hollow form)', 2.7],
-        ['Compsognathus (elegant jaw)', 0.9],
-        ['Deinonychus (terrible claw)', 2.7],
-        ['Diplodocus (double beam)', 27.1],
-        ['Dromicelomimus (emu mimic)', 3.4],
-        ['Gallimimus (fowl mimic)', 5.5],
-        ['Mamenchisaurus (Mamenchi lizard)', 21.0],
-        ['Megalosaurus (big lizard)', 7.9],
-        ['Microvenator (small hunter)', 1.2],
-        ['Ornithomimus (bird mimic)', 4.6],
-        ['Oviraptor (egg robber)', 1.5],
-        ['Plateosaurus (flat lizard)', 7.9],
-        ['Sauronithoides (narrow-clawed lizard)', 2.0],
-        ['Seismosaurus (tremor lizard)', 45.7],
-        ['Spinosaurus (spiny lizard)', 12.2],
-        ['Supersaurus (super lizard)', 30.5],
-        ['Tyrannosaurus (tyrant lizard)', 15.2],
-        ['Ultrasaurus (ultra lizard)', 30.5],
-        ['Velociraptor (swift robber)', 1.8]]);
+function drawCharthse() {
+
+    var metahse = [1200 * 0.7, 2400 * 0.7, 1200 * 0.7, 2400 * 0.7];
+
+    var arraydata = [['Estudiante', 'Personal Score']];
+    var studentList = studentNames(dropsede.value, dropgen.value);
+    var sprintScoreList = hsePorSprint(dropsede.value, dropgen.value, dropsprint.value);
+
+    var numalcameta = 0;
+
+
+    console.log(arraydata);
+
+    for (let i = 0; i < studentList.length; i++) {
+        var mergeArray = [];
+        mergeArray.push(studentList[i]);
+        mergeArray.push(sprintScoreList[i]);
+        arraydata.push(mergeArray);
+
+        if (sprintScoreList[i] > metahse[dropsprint.value]) {
+            numalcameta++;
+        }
+
+    }
+
+    var numnocumple = studentList.length - numalcameta;
+    var porcencumple = numalcameta / studentList.length * 100;
+
+    var txt_numalcameta = document.getElementById('StudentsMeetHSE').firstElementChild;
+    var txt_porcencumple = document.getElementById('PerStudentsMeetHSE').firstElementChild;
+
+
+    txt_numalcameta.textContent = numnocumple;
+    txt_porcencumple.textContent = porcencumple.toFixed(2) + "%";
+
+
+    var data = google.visualization.arrayToDataTable(arraydata);
+    var data2 = new google.visualization.DataTable();
+    data2.addColumn('string', 'Topping');
+    data2.addColumn('number', 'Slices');
+    data2.addRows([
+        ['Alcanzaron Meta', numalcameta],
+        ['No Alcanzaron Meta', numnocumple],
+    ]);
 
     var options = {
         title: '',
         legend: { position: 'none' },
     };
+    var options2 = {
+        title: '',
+        legend: { position: 'none' },
+    };
 
-    var chart = new google.visualization.Histogram(document.getElementById('grafic1'));
+    var chart = new google.visualization.Histogram(document.getElementById('graficaHSE'));
     chart.draw(data, options);
+
+    var chart2 = new google.visualization.PieChart(document.getElementById('graficaHSEPie'));
+    chart2.draw(data2, options2);
 }

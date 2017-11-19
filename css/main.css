@@ -114,7 +114,7 @@ li {
     border: 1px blue solid;
 }
 
-#seccioncuatro {
+.seccioncuatro {
     background-color: white;
     display: inline-block;
     width: 88.5%;
