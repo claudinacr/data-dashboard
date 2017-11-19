@@ -221,6 +221,16 @@ img[src="assets/images/circle-graphic.png"] {
     padding: 1em;
 }
 
+.deletestu {
+    min-width: 3em;
+    max-height: 3em;
+    border-radius: 3px;
+}
+
+.infoScores {
+    margin-right: auto;
+}
+
 #cinco {
     margin-bottom: 200px;
 }

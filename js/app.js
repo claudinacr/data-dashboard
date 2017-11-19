@@ -748,11 +748,23 @@ lifePer.appendChild(document.createElement('h3'));
 stuscores.appendChild(techPer);
 stuscores.appendChild(lifePer);
 var auxdiv = document.createElement('div');
-
+auxdiv.className = 'infoScores';
 auxdiv.appendChild(stuname);
 auxdiv.appendChild(stuscores);
+
+
+var deletebutton = document.createElement('button');
+deletebutton.className = "deletestu";
+deletebutton.setAttribute('type', 'button');
+var deleteicon = document.createElement('i');
+deleteicon.className = "fa fa-trash";
+deleteicon.setAttribute('aria-hidden', "true");
+deletebutton.appendChild(deleteicon);
+
+
 studentinfo.appendChild(stuphoto);
 studentinfo.appendChild(auxdiv);
+studentinfo.appendChild(deletebutton);
 
 
 
@@ -776,11 +788,11 @@ function studentByGen() {
 
         if (students[i]['sprints'] && students[i]['sprints'].length > 0) {
 
-            newstuscore.querySelector('.techPer').firstElementChild.textContent = students[i]['sprints'][0]['score']['tech'];
-            newstuscore.querySelector('.lifePer').firstElementChild.textContent = students[i]['sprints'][0]['score']['hse'];
+            newstuscore.querySelector('.techPer').firstElementChild.textContent = 'Tech Score: ' + students[i]['sprints'][0]['score']['tech'];
+            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 'Life Score: ' + students[i]['sprints'][0]['score']['hse'];
         } else {
-            newstuscore.querySelector('.techPer').firstElementChild.textContent = 0;
-            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 0;
+            newstuscore.querySelector('.techPer').firstElementChild.textContent = 'Tech Score: ' + 0;
+            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 'Tech Score: ' + 0;
         }
 
         studentsList.appendChild(newstudentInfo);
