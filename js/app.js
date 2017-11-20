@@ -785,18 +785,19 @@ function studentByGen() {
         students[i];
 
         var newstudentInfo = studentinfo.cloneNode(true);
-        newstudentInfo.querySelector('.stuphoto').firstElementChild.setAttribute('src', 'assets/images/girl.png');
+
         newstudentInfo.querySelector('.stuname').firstElementChild.textContent = students[i]['name'];
 
         var newstuscore = newstudentInfo.querySelector('.stuscores');
 
         if (students[i]['sprints'] && students[i]['sprints'].length > 0) {
-
+            newstudentInfo.querySelector('.stuphoto').firstElementChild.setAttribute('src', 'assets/images/girl.png');
             newstuscore.querySelector('.techPer').firstElementChild.textContent = 'Tech Score: ' + students[i]['sprints'][0]['score']['tech'];
             newstuscore.querySelector('.lifePer').firstElementChild.textContent = 'Life Score: ' + students[i]['sprints'][0]['score']['hse'];
         } else {
+            newstudentInfo.querySelector('.stuphoto').firstElementChild.setAttribute('src', 'assets/images/girlsad.png');
             newstuscore.querySelector('.techPer').firstElementChild.textContent = 'Tech Score: ' + 0;
-            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 'Tech Score: ' + 0;
+            newstuscore.querySelector('.lifePer').firstElementChild.textContent = 'Life Score: ' + 0;
         }
 
         studentsList.appendChild(newstudentInfo);
