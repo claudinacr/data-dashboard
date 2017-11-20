@@ -1,6 +1,6 @@
 var botones = document.getElementsByClassName('tab');
 
-console.log(botones);
+//console.log(botones);
 
 
 //cambiar contenido segun boton del menu
@@ -47,15 +47,17 @@ cargarPag();
 var dropsede = document.querySelector('.sede');
 var dropsedeoptions = dropsede.getElementsByTagName('option');
 
-var dropgen = document.querySelector('.generacion');
-
-var dropsprint = document.getElementById('sprintNum');
-
 for (let i = 0; i < dropsedeoptions.length; i++) {
 
     dropsedeoptions[i].setAttribute('value', (Object.keys(data)[i]));
 
 }
+
+var dropgen = document.querySelector('.generacion');
+
+var dropsprint = document.getElementById('sprintNum');
+
+
 
 dropsede.onchange = function (event) {
     genSelect(event.target.value);
@@ -99,8 +101,8 @@ window.onload = function () {
     overview.style.display = "block"; //muestra panta
     student.style.display = "none"; //oculta pantalla student
     teacher.style.display = "none"; //oculta pantalla teacher
+    botones[0].style.borderBottom = '3px #F9A91A solid';
     //studentByGen(dropsede.value, dropgen.value);
-
 
 };
 
@@ -265,7 +267,7 @@ function grafTortaDesercion() {
 
     var datos = new google.visualization.DataTable();
     datos.addColumn('string', 'Topping');
-    datos.addColumn('number', 'Slices');
+    datos.addColumn('number', 'Estudiantes');
     datos.addRows([
         ['Activas', alumnasactivas],
         ['Inactivas', alumnasdeser],
@@ -275,7 +277,6 @@ function grafTortaDesercion() {
     var options = {
         title: '',
         colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7'],
-
 
     };
 
@@ -425,32 +426,15 @@ function drawCharttech() {
 
     var numalcameta = 0;
 
-    /*     //console.log(sprintScoreList);
-        //console.log(Math.max.apply(Math, sprintScoreList));
-    
-        var imgcoder = document.getElementById('imgcoder');
-        var maxScore = Math.max.apply(Math, sprintScoreList);
-        //console.log(maxScore);
-    
-        var indexMax = sprintScoreList.indexOf(maxScore);
-        //console.log(indexMax);
-    
-        var namecoder = studentList[indexMax];
-    
-        console.log(namecoder);
-        var txt_namecoder = document.getElementById('namecoder');
-        txt_namecoder.textContent = namecoder; */
-
-
-
-    //console.log(arraydata);
-
     for (let i = 0; i < studentList.length; i++) {
         var mergeArray = [];
-        mergeArray.push(studentList[i]);
-        mergeArray.push(sprintScoreList[i]);
-        arraydata.push(mergeArray);
 
+        mergeArray.push(studentList[i]);
+        //['Fulana']
+        mergeArray.push(sprintScoreList[i]);
+        //['Fulana', 1366]
+        arraydata.push(mergeArray);
+        //[['Estudiante', 'Tech Score'],['Fulana', 1366]];
         if (sprintScoreList[i] > metaTech[dropsprint.value]) {
             numalcameta++;
         }
@@ -462,7 +446,6 @@ function drawCharttech() {
 
     var txt_numalcameta = document.getElementById('StudentsMeetTech').firstElementChild;
     var txt_porcencumple = document.getElementById('PerStudentsMeetTech').firstElementChild;
-
 
     txt_numalcameta.textContent = numnocumple;
     txt_porcencumple.textContent = porcencumple.toFixed(2) + "%";
@@ -822,7 +805,7 @@ function studentByGen() {
 
 
 }
-
+//Boton Borrar de cada Caja de Estudiante
 document.addEventListener("click", function (event) {
 
     var objetivo = event.target;
