@@ -340,7 +340,7 @@ function grafNPS() {
     txt_acumNPS.innerHTML = "";
     txt_promNPS.innerHTML = "";
 
-    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " NPS Acumulado";
+    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " Cumulative NPS";
     for (let i = 0; i < promnps.length; i++) {
         txt_promNPS.appendChild(document.createTextNode(promnps[i].toFixed(2) + "%" + label[i]));
         txt_promNPS.appendChild(document.createElement('br'));
@@ -456,8 +456,8 @@ function drawCharttech() {
     data2.addColumn('string', 'Topping');
     data2.addColumn('number', 'Estudiantes');
     data2.addRows([
-        ['Alcanzaron Meta', numalcameta],
-        ['No Alcanzaron Meta', numnocumple],
+        ['Students that meet the target', numalcameta],
+        ['Students that do not meet de target', numnocumple],
     ]);
 
     var options = {
@@ -520,8 +520,8 @@ function drawCharthse() {
     data2.addColumn('string', 'Topping');
     data2.addColumn('number', 'Estudiantes');
     data2.addRows([
-        ['Alcanzaron Meta', numalcameta],
-        ['No Alcanzaron Meta', numnocumple],
+        ['Students that meet the target', numalcameta],
+        ['Students that do not meet the target', numnocumple],
     ]);
 
     var options = {
