@@ -261,7 +261,8 @@ function grafTortaDesercion() {
     // Set chart options
     var options = {
         title: '',
-        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7'],
+
 
     };
 
@@ -297,7 +298,8 @@ function grafPromSprints() {
 
     var options = {
         title: '',
-        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7'],
+        'legend': 'top',
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficaachiv'));
@@ -324,7 +326,7 @@ function grafNPS() {
     txt_acumNPS.innerHTML = "";
     txt_promNPS.innerHTML = "";
 
-    txt_acumNPS.textContent = npsacum.toFixed(2) + '%';
+    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " NPS Acumulado";
     for (let i = 0; i < promnps.length; i++) {
         txt_promNPS.appendChild(document.createTextNode(promnps[i].toFixed(2) + "%" + label[i]));
         txt_promNPS.appendChild(document.createElement('br'));
@@ -341,7 +343,8 @@ function grafNPS() {
 
     var options = {
         title: '',
-        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7']
+        colors: ['#F9A91A', '#333333', '#B37405', '#F7F7F7'],
+        'legend': 'top',
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficaNPS'));
@@ -455,7 +458,7 @@ function drawCharttech() {
     var data = google.visualization.arrayToDataTable(arraydata);
     var data2 = new google.visualization.DataTable();
     data2.addColumn('string', 'Topping');
-    data2.addColumn('number', 'Slices');
+    data2.addColumn('number', 'Estudiantes');
     data2.addRows([
         ['Alcanzaron Meta', numalcameta],
         ['No Alcanzaron Meta', numnocumple],
@@ -463,7 +466,8 @@ function drawCharttech() {
 
     var options = {
         title: '',
-        colors: ['#333333', '#F9A91A', '#B37405', '#F7F7F7']
+        colors: ['#333333', '#F9A91A', '#B37405', '#F7F7F7'],
+        legend: 'top'
     };
     var options2 = {
         title: '',
@@ -518,7 +522,7 @@ function drawCharthse() {
     var data = google.visualization.arrayToDataTable(arraydata);
     var data2 = new google.visualization.DataTable();
     data2.addColumn('string', 'Topping');
-    data2.addColumn('number', 'Slices');
+    data2.addColumn('number', 'Estudiantes');
     data2.addRows([
         ['Alcanzaron Meta', numalcameta],
         ['No Alcanzaron Meta', numnocumple],
@@ -526,7 +530,8 @@ function drawCharthse() {
 
     var options = {
         title: '',
-        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405'],
+        legend: 'top'
     };
     var options2 = {
         title: '',
@@ -583,7 +588,7 @@ function grafSatisfaccion() {
 
     var datos = new google.visualization.DataTable();
     datos.addColumn('string', 'Topping');
-    datos.addColumn('number', 'Slices');
+    datos.addColumn('number', 'SS');
     datos.addRows([
         ['S1', superaSprints[0]],
         ['S2', superaSprints[1]],
@@ -594,7 +599,8 @@ function grafSatisfaccion() {
     // Set chart options
     var options = {
         title: '',
-        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405'],
+        legend: 'top'
     };
 
     var chart = new google.visualization.LineChart(document.getElementById("studentSatis"));
@@ -643,7 +649,7 @@ function grafTeacher() {
 
     var datos = new google.visualization.DataTable();
     datos.addColumn('string', 'Topping');
-    datos.addColumn('number', 'Slices');
+    datos.addColumn('number', 'TR');
     datos.addRows([
         ['S1', teacherSprints[0]],
         ['S2', teacherSprints[1]],
@@ -654,7 +660,8 @@ function grafTeacher() {
     // Set chart options
     var options = {
         title: '',
-        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405'],
+        legend: 'top'
 
     };
 
@@ -704,7 +711,7 @@ function grafJedi() {
 
     var datos = new google.visualization.DataTable();
     datos.addColumn('string', 'Topping');
-    datos.addColumn('number', 'Slices');
+    datos.addColumn('number', 'JMR');
     datos.addRows([
         ['S1', jediSprints[0]],
         ['S2', jediSprints[1]],
@@ -715,7 +722,8 @@ function grafJedi() {
     // Set chart options
     var options = {
         title: '',
-        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405']
+        colors: ['#F9A91A', '#F7F7F7', '#333333', '#B37405'],
+        legend: 'top'
 
     };
 

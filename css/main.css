@@ -112,20 +112,31 @@ button {
 
 .enrollment,
 .achivement,
-.nps {
+.nps,
+.seccioncuatro {
     width: 356px;
     margin: 15px;
     background-color: white;
+    font-family: 'Julius Sans One', sans-serif;
+    text-align: center;
     /* border: 1px blue solid; */
 }
 
-#StudCurrEnr,
-#dropout {
+.contbox {
+    text-align: center;
+}
+
+.boxes {
     width: 150px;
     height: 63px;
     background-color: #F7F7F7;
-    border: 1px black solid;
     display: inline-block;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: bold;
+    -webkit-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
 }
 
 #graficaEnroll {
@@ -146,22 +157,17 @@ button {
 
 #cuatro {
     background-color: #F7F7F7;
-    display: block;
+    display: flex;
     /* border: 1px blue solid; */
-    margin-bottom: 55px;
-    padding: 50px;
-    padding-bottom: 0;
-    margin-bottom: 0;
     /* border: 1px blue solid; */
 }
 
 .seccioncuatro {
     background-color: white;
-    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
     width: 88.5%;
-    margin-left: 4.5%;
-    padding-left: 2em;
-    margin-top: 55px;
+    padding: 1em;
 }
 
 .graficatech img {
@@ -182,28 +188,42 @@ img[src="assets/images/circle-graphic.png"] {
     width: 30%;
 }
 
-#cinco1 {
+#cinco {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     background-color: #F7F7F7;
-    display: block;
     /* border: 1px blue solid; */
-    margin-bottom: 55px;
-    padding: 50px;
-    padding-top: 0;
-    margin-top: 0;
-    /* border: 1px blue solid; */
+    padding-top: 2em;
 }
 
-#cinco div {
-    float: left;
+#cinco .boxes {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: bold;
+    -webkit-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
 }
 
 .student,
 .teacher,
 .jedi {
-    background-color: #F7F7F7;
-    width: 350px;
-    margin: 30px;
-    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 356px;
+    margin: 15px;
+    background-color: white;
+    font-family: 'Julius Sans One', sans-serif;
+    text-align: center;
+    padding: 1em;
+    /* border: 1px blue solid; */
 }
 
 #student {
@@ -212,6 +232,7 @@ img[src="assets/images/circle-graphic.png"] {
 }
 
 .studentinfo {
+    font-family: 'Nunito Sans', sans-serif;
     display: flex;
     background-color: #F7F7F7;
     border: 2px #F9A91A solid;
@@ -237,10 +258,6 @@ img[src="assets/images/circle-graphic.png"] {
 
 .infoScores {
     margin-right: auto;
-}
-
-#cinco {
-    margin-bottom: 200px;
 }
 
 header i {
