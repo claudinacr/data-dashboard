@@ -36,6 +36,7 @@ header {
     align-items: stretch;
     padding-top: 2em;
     padding-left: 3.5em;
+    padding-bottom: 1em;
     /* border: 1px blue solid; */
 }
 
@@ -102,6 +103,11 @@ button {
     font-family: 'Francois One', sans-serif;
     font-size: 20px;
     margin-left: 2em;
+    border-bottom: 3px #E0E0E0 solid;
+}
+
+.tab:hover {
+    border-bottom: 3px #F9A91A solid;
 }
 
 .enrollment,
