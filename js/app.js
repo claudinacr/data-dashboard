@@ -44,13 +44,16 @@ var cargarPag = function () {
 cargarPag();
 
 // Agregar Valores de las sedes al Select de Sedes en HTML
+//Agrarrar selector class .sede
 var dropsede = document.querySelector('.sede');
+//Agregar las opciones que tiene el selector 
 var dropsedeoptions = dropsede.getElementsByTagName('option');
 
+//Recorrer las opciones con un for para agregar valores de las sedes al selector de sedes
 for (let i = 0; i < dropsedeoptions.length; i++) {
 
     dropsedeoptions[i].setAttribute('value', (Object.keys(data)[i]));
-
+    //Ejemplo: en la opcion Arequipa, se agregara el valor de data AQP
 }
 
 var dropgen = document.querySelector('.generacion');
@@ -76,6 +79,7 @@ dropsprint.onchange = function () {
     drawCharthse();
 }
 
+//Funcion para que al seleccionar una sede cambie las generaciones en base a cada sede
 function genSelect(sede) {
 
     var datagene = Object.keys(data[sede]);
@@ -145,28 +149,29 @@ function DeserEstGen(sede, gen) {
 function promedioSprintPorGen(sede, gen) {
 
     var estudiantes = data[sede][gen]['students'];
-
     var promSprints = [];
     var sumaSprints = [0, 0, 0, 0];
     var metaSprints70 = 4000;
     var estudiantesSup = 0;
     ;
+
+
     for (let i = 0; i < estudiantes.length; i++) {
         var sumaIndiv = 0;
-
         const estudiante = estudiantes[i];
 
         var sprints = estudiante['sprints'];
-
         if (sprints && sprints.length > 0) {
             for (let j = 0; j < sprints.length; j++) {
                 const sprint = sprints[j];
 
+                //Suma de puntaje tecnico y puntaje hse del sprint en la posición j
                 sumaSprints[j] += sprint['score']['tech'] + sprint['score']['hse'];
                 sumaIndiv += sprint['score']['tech'] + sprint['score']['hse'];
+
             }
 
-            if (sumaIndiv >= metaSprints70) {
+            if (sumaIndiv >= metaSprints70) { //Si el total de sumaIndiv es igual o mayor a 4000
                 estudiantesSup++;
             }
 
@@ -254,15 +259,15 @@ function grafTortaDesercion() {
 
     var txt_totalAlumnas = document.getElementById('StudCurrEnr').firstElementChild;
     var txt_porDesercion = document.getElementById('dropout').firstElementChild;
-
+    console.log(txt_porDesercion);
     var alumnasdeGen = AlumnasporGen(dropsede.value, dropgen.value).length;
-
+    // console.log(alumnasdeGen);
     var alumnasdeser = DeserEstGen(dropsede.value, dropgen.value);
     var alumnasactivas = alumnasdeGen - alumnasdeser;
 
     var porcenDer = alumnasdeser / alumnasdeGen * 100;
 
-    txt_totalAlumnas.textContent = alumnasdeGen;
+    txt_totalAlumnas.textContent = alumnasdeGen; alumnasdeGen;
     txt_porDesercion.textContent = porcenDer.toFixed(2) + "%";
 
     var datos = new google.visualization.DataTable();
