@@ -119,6 +119,7 @@ button {
     background-color: white;
     font-family: 'Julius Sans One', sans-serif;
     text-align: center;
+
     /* border: 1px blue solid; */
 }
 
@@ -278,4 +279,13 @@ ul {
 
 .sede {
     /* border: 1px blue solid; */
+}
+
+.fa-th-large{
+    color: #4b4b4b;
+    margin: 10px;
+    padding: 5px;
+}
+.es, .gb {
+    width: 50px;
 }
