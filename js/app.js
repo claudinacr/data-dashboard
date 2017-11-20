@@ -17,9 +17,9 @@ var mostrarOcultar = function (e) {
         studentByGen();
     } else if (tabSeleccionado === "tabTeacher") {
         //console.log("Teacher");
-        student.style.display = "none"; //oculta pantalla student
-        teacher.style.display = "block"; //muestra pantalla teacher
-        overview.style.display = "none"; //oculta pantalla overview
+        //student.style.display = "none"; //oculta pantalla student
+        //teacher.style.display = "block"; //muestra pantalla teacher
+        //overview.style.display = "none"; //oculta pantalla overview
     }
 }
 var cargarPag = function () {
@@ -802,3 +802,31 @@ function studentByGen() {
 
 }
 
+document.addEventListener("click", function (event) {
+
+    var objetivo = event.target;
+    var contenedorEstu = document.getElementById('student');
+    var listaestudiantes = contenedorEstu.getElementsByClassName('studentinfo');
+
+    if (objetivo.className.match('deletestu')) {
+
+        var nombre = objetivo.previousSibling.firstElementChild.firstElementChild.textContent;
+
+        var students = data[dropsede.value][dropgen.value]['students'];
+
+        for (let i = 0; i < students.length; i++) {
+
+            if (students[i]['name'] === nombre) {
+                data[dropsede.value][dropgen.value]['students'].splice(i, 1);
+                console.log("Borrado");
+            }
+
+        }
+
+    }
+
+    //Refrescamos las graficas y La lista de estudiantes
+    studentByGen();
+    graficarTodo();
+
+});
