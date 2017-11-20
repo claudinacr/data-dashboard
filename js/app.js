@@ -1,25 +1,38 @@
+var botones = document.getElementsByClassName('tab');
+
+console.log(botones);
+
+
 //cambiar contenido segun boton del menu
 var mostrarOcultar = function (e) {
     var tabSeleccionado = e.target.dataset.tabSeleccionado;
     var overview = document.getElementById("overview");
     var student = document.getElementById("student");
     var teacher = document.getElementById("teacher");
+
     if (tabSeleccionado === "tabOverview") {
         //console.log("overview");
         student.style.display = "none"; //oculta pantalla student
         teacher.style.display = "none"; //oculta pantalla teacher
         overview.style.display = "block"; //muestra pantalla overview
+        botones[0].style.borderBottom = '3px #F9A91A solid';
+        botones[1].style.borderBottom = '3px #E0E0E0 solid';
+
+
     } else if (tabSeleccionado === "tabStudent") {
         //console.log("Student");
         student.style.display = "block"; //muestra pantalla student
         teacher.style.display = "none"; //oculta pantalla teacher
         overview.style.display = "none"; //oculta pantalla overview
+        botones[0].style.borderBottom = '3px #E0E0E0 solid';
+        botones[1].style.borderBottom = '3px #F9A91A solid';
         studentByGen();
     } else if (tabSeleccionado === "tabTeacher") {
         //console.log("Teacher");
         //student.style.display = "none"; //oculta pantalla student
         //teacher.style.display = "block"; //muestra pantalla teacher
         //overview.style.display = "none"; //oculta pantalla overview
+
     }
 }
 var cargarPag = function () {
