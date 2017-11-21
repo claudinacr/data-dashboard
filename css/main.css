@@ -134,6 +134,8 @@ button {
     display: inline-block;
     overflow: hidden;
     font-size: 13px;
+    padding: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
     -webkit-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
@@ -151,6 +153,7 @@ button {
 #contenedorStudDrop {
     text-align: center;
 }
+
 
 #tres {
     background-color: #F7F7F7;
