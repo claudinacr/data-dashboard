@@ -120,6 +120,7 @@ button {
     font-family: 'Julius Sans One', sans-serif;
     text-align: center;
 
+
     /* border: 1px blue solid; */
 }
 
@@ -136,6 +137,7 @@ button {
     font-size: 13px;
     padding: 10px;
     margin-bottom: 5px;
+    margin-top: 10px;
     font-weight: bold;
     -webkit-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 12px -9px rgba(0, 0, 0, 0.75);
@@ -148,6 +150,7 @@ button {
 
 #enrollment {
     float: left;
+
 }
 
 #contenedorStudDrop {
