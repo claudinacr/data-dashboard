@@ -4,7 +4,7 @@
 * **Curso:** _Creando tu primer sitio web interactivo_
 * **Unidad:** _Producto final_
 
-**[Data](assets/images/readme01.gif?raw=true "Data Dashboard")
+**[Data](http://img.fenixzone.net/i/4t8iPac.gif)
 
 
 ##English
