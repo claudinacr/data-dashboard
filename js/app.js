@@ -340,12 +340,12 @@ function grafNPS() {
     var txt_acumNPS = document.getElementById('StudCurrEnrNPS');
     var txt_promNPS = document.getElementById('nps');
 
-    var label = [' Promoters', ' Passive', ' Detractors'];
+    var label = [' Partidarias', ' Neutrales', ' Detractoras'];
 
     txt_acumNPS.innerHTML = "";
     txt_promNPS.innerHTML = "";
 
-    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " Acumulado NPS";
+    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " NPS Acumulado";
     for (let i = 0; i < promnps.length; i++) {
         txt_promNPS.appendChild(document.createTextNode(promnps[i].toFixed(2) + "%" + label[i]));
         txt_promNPS.appendChild(document.createElement('br'));
@@ -461,8 +461,8 @@ function drawCharttech() {
     data2.addColumn('string', 'Topping');
     data2.addColumn('number', 'Estudiantes');
     data2.addRows([
-        ['Students that meet the target', numalcameta],
-        ['Students that do not meet de target', numnocumple],
+        ['Estudiantes que alcanzaron la meta', numalcameta],
+        ['Estudiantes que no alcanzaron la meta', numnocumple],
     ]);
 
     var options = {
@@ -525,8 +525,8 @@ function drawCharthse() {
     data2.addColumn('string', 'Topping');
     data2.addColumn('number', 'Estudiantes');
     data2.addRows([
-        ['Students that meet the target', numalcameta],
-        ['Students that do not meet the target', numnocumple],
+        ['Estudiantes que alcanzaron la meta', numalcameta],
+        ['Estudiantes que no alcanzaron la meta', numnocumple],
     ]);
 
     var options = {

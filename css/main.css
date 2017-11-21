@@ -134,6 +134,7 @@ button {
     background-color: #F7F7F7;
     display: inline-block;
     overflow: hidden;
+    line-height: 16px;
     font-size: 13px;
     padding: 10px;
     margin-bottom: 5px;
