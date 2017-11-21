@@ -345,7 +345,7 @@ function grafNPS() {
     txt_acumNPS.innerHTML = "";
     txt_promNPS.innerHTML = "";
 
-    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " Acumulado NPS";
+    txt_acumNPS.textContent = npsacum.toFixed(2) + '%' + " Cumulative NPS";
     for (let i = 0; i < promnps.length; i++) {
         txt_promNPS.appendChild(document.createTextNode(promnps[i].toFixed(2) + "%" + label[i]));
         txt_promNPS.appendChild(document.createElement('br'));
