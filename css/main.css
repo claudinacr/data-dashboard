@@ -119,8 +119,6 @@ button {
     background-color: white;
     font-family: 'Julius Sans One', sans-serif;
     text-align: center;
-
-
     /* border: 1px blue solid; */
 }
 
@@ -129,8 +127,8 @@ button {
 }
 
 .boxes {
-    width: 160px;
-    height: 63px;
+    width: 150px;
+    height: 70px;
     background-color: #F7F7F7;
     display: inline-block;
     overflow: hidden;
@@ -151,13 +149,11 @@ button {
 
 #enrollment {
     float: left;
-
 }
 
 #contenedorStudDrop {
     text-align: center;
 }
-
 
 #tres {
     background-color: #F7F7F7;
@@ -288,11 +284,12 @@ ul {
     /* border: 1px blue solid; */
 }
 
-.fa-th-large{
+.fa-th-large {
     color: #4b4b4b;
     margin: 10px;
     padding: 5px;
 }
+
 .flag {
     width: 30px;
     margin: 20px;
