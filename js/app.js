@@ -766,8 +766,8 @@ var deletebutton = document.createElement('button');
 deletebutton.className = "deletestu";
 deletebutton.setAttribute('type', 'button');
 var deleteicon = document.createElement('i');
-deleteicon.className = "fa fa-trash";
-deleteicon.setAttribute('aria-hidden', "true");
+// deleteicon.className = "fa fa-trash";
+// deleteicon.setAttribute('aria-hidden', "true");
 deletebutton.appendChild(deleteicon);
 
 

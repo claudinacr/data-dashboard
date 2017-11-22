@@ -260,6 +260,11 @@ img[src="assets/images/circle-graphic.png"] {
     font-size: 20px;
 }
 
+.deletestu:before {
+    content: "\f1f8";
+    font-family: FontAwesome;
+}
+
 .infoScores {
     margin-right: auto;
 }
