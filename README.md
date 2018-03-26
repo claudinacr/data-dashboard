@@ -6,4 +6,4 @@ Data Dashboard - Bootcamp @ Laboratoria es una página web que tiene por objetiv
 ![Data-dashboard](https://i.imgur.com/tHcJfvR.png)
 
 # Desarrollado para
-Laboratoria
+[enter link description here](http://www.laboratoria.la/)
